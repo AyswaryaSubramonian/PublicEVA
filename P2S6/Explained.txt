@@ -1,1 +1,78 @@
+Phase 2 Session 6
 
+TASK:
+
+Once you are done, understand the code you copied and write a pseudo-code to explain what is happening. You need to explain:
+    __init__
+    getQValue
+    computeValueFromQValue
+    computeActionFromQValues
+    getAction
+    update
+
+
+Explanation: For QLearningAgent
+
+1. __init__
+Init function to initialize the (state, action) pair Qvalues for the Q learning agent
+PseudoCode:
+This is a dictionary having (state, action) as key, and initialized using the prebuilt utils Counter   
+
+
+2. getQValue
+Function to get the Q values for a given state from the already stored values.
+
+PseudoCode:
+Check If (state, action) pair is found in q_values dictionary.
+    If Found, return the corresponding q_value
+    Else return 0.0
+
+
+3. computeValueFromQValue
+Function to return the maximum q value from all actions within a given state
+
+PseudoCode:
+Get a list of all legal actions possible from this state
+If no actions are available, return 0
+
+If actions are available:
+    Iterate through all available actions
+      For each action, get the corresponding Q value of that action for this state
+      Append all action Q values to a list  
+  Return the maximum Q value from the list 
+
+
+
+4. computeActionFromQValues
+Function to return the best action for a state (ie action which gives maximum Q Value for this state)
+
+PseudoCode:
+Get a list of all legal actions possible from this state
+If no actions are available, return None
+
+If actions are available:
+    Initialize a dictionary to hold the action and corresponding Q value
+    Iterate through all available actions
+      For each action, get the corresponding Q value of that action for this state
+      Append all action Q values to the above dictionary
+  Return the action from the above dictionary for which the Q value is maximum
+
+
+
+5. getAction
+Compute which action to take in a given state. If epsilon is given, then take a random action, else pick best action
+PseudoCode:
+
+Get a list of all legal actions for this state
+If no actions are available, return None
+
+If actions are available:
+    For given probability Epsilon, pick a random action to return
+    If not within this probability, then pick the best action to return using previously defined functions
+
+
+6. update
+Function to update the Q values for each iteration
+
+Calculate the temporal difference using the equation
+Update the new values in the q_values dictionary
